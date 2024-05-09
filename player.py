@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite):
         self.velo = pygame.math.Vector2()
         self.speed = 250
 
-        self.image = pygame.Surface([40, 40])
+        self.image = pygame.Surface([40, 60])
         self.image.fill(lib.color.WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos

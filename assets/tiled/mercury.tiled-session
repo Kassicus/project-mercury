@@ -1,0 +1,44 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "ship.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "ship.tmx": {
+            "scale": 0.7728,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 453.5455486542443,
+                "y": 430.9006211180125
+            }
+        },
+        "test_set.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "/Users/kasonsuchow/Documents/github/project-mercury/assets/aseprite",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 60,
+    "map.tileWidth": 60,
+    "openFiles": [
+        "ship.tmx",
+        "test_set.tsx"
+    ],
+    "project": "mercury.tiled-project",
+    "recentFiles": [
+        "test_set.tsx",
+        "ship.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 60,
+        "width": 60
+    }
+}
