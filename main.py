@@ -2,6 +2,7 @@ import pygame
 
 import lib
 import debug
+import world
 
 pygame.init()
 
@@ -15,6 +16,7 @@ class Game:
         lib.events = pygame.event.get()
 
         self.debug_interface = debug.DebugInterface()
+        self.world = world.World("assets/background.png")
 
     def run(self):
         while self.running:
@@ -37,6 +39,8 @@ class Game:
                     self.running = False
                 if event.key == pygame.K_TAB:
                     self.debug_interface.toggle_active()
+                if event.key == pygame.K_u:
+                    self.debug_interface.toggle_framerate()
 
     def multi_events(self):
         pass
@@ -44,14 +48,17 @@ class Game:
     def draw(self):
         self.screen.fill(lib.color.BLACK)
 
+        self.world.draw()
+
         if self.debug_interface.active:
             self.debug_interface.draw()
 
     def update(self):
+        self.world.update()
+
         self.debug_interface.update(self.clock)
         pygame.display.update()
         lib.delta_time = self.clock.tick(lib.framerate) / 1000
-
 
 
 if __name__ == '__main__':

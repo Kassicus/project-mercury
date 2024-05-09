@@ -1,14 +1,15 @@
 import pygame
 from random import randint
 
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 1050
 SCREEN_TITLE = "Project Mercury"
 
 class Colors:
     def __init__(self):
         self.BLACK = pygame.Color(0, 0, 0, 255)
         self.WHITE = pygame.Color(255, 255, 255, 255)
+        self.RED = pygame.Color(255, 0, 0, 255)
 
     def random(self) -> pygame.Color:
         color = pygame.Color(randint(0, 255), randint(0, 255), randint(0, 255), 255)
@@ -40,6 +41,9 @@ class Colors:
         
 
 color = Colors()
+
+global_offset = pygame.math.Vector2()
+world_reference = None
 
 delta_time = 0
 events = None

@@ -9,6 +9,8 @@ class DebugInterface:
         self.offset = 10
         self.display_surface = pygame.display.get_surface()
 
+        self.capped_frames = True
+
         self.t_fps = None
         self.t_mouse = None
 
@@ -16,8 +18,12 @@ class DebugInterface:
         self.o_mouse = None
 
     def get_fps(self, clock: pygame.time.Clock) -> list [pygame.Surface, int]:
-        string = "FPS: " + str(int(clock.get_fps()))
-        text = self.font.render(string, True, lib.color.WHITE)
+        if self.capped_frames:
+            string = "FPS: " + str(int(clock.get_fps())) + " (capped)"
+            text = self.font.render(string, True, lib.color.WHITE)
+        else:
+            string = "FPS: " + str(int(clock.get_fps())) + " (uncapped)"
+            text = self.font.render(string, True, lib.color.RED)
         offset = int(lib.SCREEN_WIDTH - text.get_width() - self.offset)
 
         return text, offset
@@ -30,6 +36,14 @@ class DebugInterface:
         offset = int(lib.SCREEN_WIDTH - text.get_width() - self.offset)
 
         return text, offset
+    
+    def toggle_framerate(self):
+        if self.capped_frames:
+            self.capped_frames = False
+            lib.framerate = 10000
+        else:
+            self.capped_frames = True
+            lib.framerate = 120
     
     def toggle_active(self):
         if self.active:
