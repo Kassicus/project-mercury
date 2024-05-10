@@ -10,11 +10,11 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "ship.tmx": {
-            "scale": 0.7728,
+            "scale": 0.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 453.5455486542443,
-                "y": 430.9006211180125
+                "x": 975,
+                "y": 812
             }
         },
         "test_set.tsx": {
