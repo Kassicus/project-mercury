@@ -1,6 +1,7 @@
 import pygame
 
 import lib
+import animation
 
 class Player(pygame.sprite.Sprite):
     def __init__(self) -> None:
@@ -10,10 +11,17 @@ class Player(pygame.sprite.Sprite):
         self.velo = pygame.math.Vector2()
         self.speed = 250
 
+        self.display_surface = pygame.display.get_surface()
+
         self.image = pygame.Surface([40, 60])
         self.image.fill(lib.color.WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
+
+        self.idle_animation = animation.Animation([
+            pygame.image.load("assets/animations/player/idle/idle_1.png").convert_alpha(),
+            pygame.image.load("assets/animations/player/idle/idle_2.png").convert_alpha()
+            ])
 
     def update(self) -> None:
         self.pos += self.velo * lib.delta_time
@@ -30,6 +38,7 @@ class Player(pygame.sprite.Sprite):
             self.velo.x = self.speed
         else:
             self.velo.x = 0
+            self.image = self.idle_animation.animate()
 
         if keys[pygame.K_w]:
             self.velo.y = -self.speed
