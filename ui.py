@@ -48,3 +48,38 @@ class Node(pygame.sprite.Sprite):
             else:
                 self.selected = False
             
+
+class HotBar(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.pos = pygame.math.Vector2(0, 0)
+
+        self.display_surface = pygame.display.get_surface()
+
+        self.nodes = pygame.sprite.Group()
+        
+        self.image = pygame.Surface([int((48 + (48 + 5) * 4)), 48]) #( width + ( width + padding ) * count {-1} ) width = 48, padding = 5, count = 5 {reduce by 1}
+        self.image.fill(lib.color.WHITE)
+        self.image.set_colorkey(lib.color.WHITE)
+        self.rect = self.image.get_rect()
+        self.pos.x = (lib.SCREEN_WIDTH - self.rect.width) / 2
+        self.pos.y = (lib.SCREEN_HEIGHT - 106)
+        self.rect.topleft = self.pos
+
+        self.populate_nodes()
+
+    def populate_nodes(self):
+        x_offset = self.pos.x
+
+        for n in range(5):
+            n = Node(x_offset, self.pos.y)
+            self.nodes.add(n)
+            x_offset += 53
+
+    def update(self):
+        self.render()
+        self.nodes.update()
+
+    def render(self):
+        self.nodes.draw(self.display_surface)

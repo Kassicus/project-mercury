@@ -10,6 +10,7 @@ class Colors:
         self.BLACK = pygame.Color(0, 0, 0, 255)
         self.WHITE = pygame.Color(255, 255, 255, 255)
         self.RED = pygame.Color(255, 0, 0, 255)
+        self.GREEN = pygame.Color(0, 255, 0, 255)
 
     def random(self) -> pygame.Color:
         color = pygame.Color(randint(0, 255), randint(0, 255), randint(0, 255), 255)

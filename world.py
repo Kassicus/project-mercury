@@ -18,9 +18,9 @@ class World():
         self.collidables = pygame.sprite.Group()
         self.user_interface_items = pygame.sprite.Group()
 
-        self.test_node = ui.Node(100, 100)
+        self.hotbar = ui.HotBar()
 
-        self.user_interface_items.add(self.test_node)
+        self.user_interface_items.add(self.hotbar)
 
         self.wall_points = [
             [0, 0, 15, 1], [0, 1, 1, 21], [15, 1, 1, 8], [15, 11, 1, 3], [15, 16, 1, 6], [1, 21, 14, 1], [16, 7, 11, 1], [16, 12, 11, 1], [16, 17, 16, 1], [20, 13, 1, 4],
