@@ -4,6 +4,7 @@ import lib
 import camera
 import player
 import wall
+import ui
 
 class World():
     def __init__(self, background_path: str) -> None:
@@ -15,6 +16,11 @@ class World():
         self.world_camera = camera.PlayerCenterCamera(self.display_surface, self.world_background)
         self.walls = pygame.sprite.Group()
         self.collidables = pygame.sprite.Group()
+        self.user_interface_items = pygame.sprite.Group()
+
+        self.test_node = ui.Node(100, 100)
+
+        self.user_interface_items.add(self.test_node)
 
         self.wall_points = [
             [0, 0, 15, 1], [0, 1, 1, 21], [15, 1, 1, 8], [15, 11, 1, 3], [15, 16, 1, 6], [1, 21, 14, 1], [16, 7, 11, 1], [16, 12, 11, 1], [16, 17, 16, 1], [20, 13, 1, 4],
@@ -52,7 +58,9 @@ class World():
 
     def draw(self) -> None:
         self.world_camera.camera_draw(self.player)
+        self.user_interface_items.draw(self.display_surface)
 
     def update(self) -> None:
         self.world_camera.update()
         self.check_collisions()
+        self.user_interface_items.update()

@@ -3,7 +3,7 @@ import pygame
 import lib
 
 class Animation():
-    def __init__(self, frames: list, animation_speed = 2) -> None:
+    def __init__(self, frames: list, animation_speed: int) -> None:
         self.frames = frames
         self.frame_index = 0
         self.animation_speed = animation_speed

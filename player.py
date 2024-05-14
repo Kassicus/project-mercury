@@ -21,14 +21,14 @@ class Player(pygame.sprite.Sprite):
         self.idle_animation = animation.Animation([
             pygame.image.load("assets/animations/player/idle/idle_1.png").convert_alpha(),
             pygame.image.load("assets/animations/player/idle/idle_2.png").convert_alpha()
-        ])
+        ], 2)
         
         self.walking_animation = animation.Animation([
             pygame.image.load("assets/animations/player/walking/walking_1.png").convert_alpha(),
             pygame.image.load("assets/animations/player/walking/walking_2.png").convert_alpha(),
             pygame.image.load("assets/animations/player/walking/walking_3.png").convert_alpha(),
             pygame.image.load("assets/animations/player/walking/walking_4.png").convert_alpha()
-        ], animation_speed=8)
+        ], 8)
 
     def update(self) -> None:
         self.pos += self.velo * lib.delta_time
