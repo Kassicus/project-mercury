@@ -13,8 +13,11 @@ class Node(pygame.sprite.Sprite):
         self.selected = False
         self.hovered = False
 
+        self.item = None
+        self.is_full = False
+
         self.image = pygame.Surface([48, 48])
-        self.image.fill(lib.color.BLACK)
+        self.image.fill(lib.color.GREEN)
         self.rect = self.image.get_rect()
         self.rect.topleft = self.pos
 
@@ -28,6 +31,9 @@ class Node(pygame.sprite.Sprite):
         if self.selected:
             pygame.draw.rect(self.display_surface, lib.color.WHITE, (self.pos.x, self.pos.y, self.rect.width, self.rect.height), 1)
 
+        if self.item is not None:
+            self.display_surface.blit(self.item.image, (self.pos.x + 4, self.pos.y + 4))
+
     def interact(self):
         mouse_pos = pygame.mouse.get_pos()
 
@@ -36,10 +42,10 @@ class Node(pygame.sprite.Sprite):
                 self.image.fill(lib.color.RED)
                 self.hovered = True
             else:
-                self.image.fill(lib.color.BLACK)
+                self.image.fill(lib.color.GREEN)
                 self.hovered = False
         else:
-            self.image.fill(lib.color.BLACK)
+            self.image.fill(lib.color.GREEN)
             self.hovered = False
 
         if pygame.mouse.get_pressed()[0]:
@@ -76,6 +82,20 @@ class HotBar(pygame.sprite.Sprite):
             n = Node(x_offset, self.pos.y)
             self.nodes.add(n)
             x_offset += 53
+
+    def add_item(self, item: pygame.sprite.Sprite):
+        collected = False
+
+        for n in self.nodes:
+            if not collected:
+                if n.item == None:
+                    n.item = item
+                    collected = True
+
+        if collected:
+            return True
+        else:
+            return False
 
     def update(self):
         self.render()

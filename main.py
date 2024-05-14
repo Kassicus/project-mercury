@@ -1,10 +1,10 @@
 import pygame
 
+pygame.init()
+
 import lib
 import debug
 import world
-
-pygame.init()
 
 class Game:
     def __init__(self):

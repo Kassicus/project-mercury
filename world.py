@@ -5,6 +5,7 @@ import camera
 import player
 import wall
 import ui
+import item
 
 class World():
     def __init__(self, background_path: str) -> None:
@@ -16,11 +17,15 @@ class World():
         self.world_camera = camera.PlayerCenterCamera(self.display_surface, self.world_background)
         self.walls = pygame.sprite.Group()
         self.collidables = pygame.sprite.Group()
-        self.user_interface_items = pygame.sprite.Group()
+        self.ui_elements = pygame.sprite.Group()
+        self.ground_items = pygame.sprite.Group()
 
         self.hotbar = ui.HotBar()
 
-        self.user_interface_items.add(self.hotbar)
+        self.ui_elements.add(self.hotbar)
+
+        self.test_item = item.Item(300, 300, "wrench", "assets/items/wrench.png")
+        self.other_item = item.Item(400, 600, "another_wrench", "assets/items/wrench.png")
 
         self.wall_points = [
             [0, 0, 15, 1], [0, 1, 1, 21], [15, 1, 1, 8], [15, 11, 1, 3], [15, 16, 1, 6], [1, 21, 14, 1], [16, 7, 11, 1], [16, 12, 11, 1], [16, 17, 16, 1], [20, 13, 1, 4],
@@ -30,6 +35,9 @@ class World():
         self.create_walls(self.wall_points)
         self.player = player.Player()
         self.world_camera.add(self.player)
+        self.world_camera.add(self.test_item, self.other_item)
+
+        self.ground_items.add(self.test_item, self.other_item)
 
     def create_walls(self, wall_array: list):
         for point_array in range(len(wall_array)):
@@ -58,9 +66,12 @@ class World():
 
     def draw(self) -> None:
         self.world_camera.camera_draw(self.player)
-        self.user_interface_items.draw(self.display_surface)
+        self.ui_elements.draw(self.display_surface)
 
     def update(self) -> None:
         self.world_camera.update()
         self.check_collisions()
-        self.user_interface_items.update()
+        self.ui_elements.update()
+
+        for item in self.ground_items:
+            item.interact_player(self.player)

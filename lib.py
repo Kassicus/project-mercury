@@ -49,3 +49,5 @@ world_reference = None
 delta_time = 0
 events = None
 framerate = 120
+
+promt_font = pygame.font.Font("assets/fonts/term.ttf", 16)
