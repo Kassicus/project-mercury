@@ -34,7 +34,7 @@ class Item(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
 
         if self.pos.x - pickup_offset < player.pos.x < self.pos.x + self.rect.width + pickup_offset:
-            if self.pos.y - pickup_offset < player.pos.y < self.pos.x + self.rect.width + pickup_offset:
+            if self.pos.y - pickup_offset < player.pos.y < self.pos.y + self.rect.height + pickup_offset:
                 self.display_surface.blit(self.pickup_text, ((self.rect.centerx - lib.global_offset.x) - self.pickup_text.get_width() / 2, (self.pos.y - 20) - lib.global_offset.y))
                 if keys[pygame.K_e]:
                     self.pickup()

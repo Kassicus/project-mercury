@@ -25,7 +25,7 @@ class World():
         self.ui_elements.add(self.hotbar)
 
         self.test_item = item.Item(300, 300, "wrench", "assets/items/wrench.png")
-        self.other_item = item.Item(400, 600, "another_wrench", "assets/items/wrench.png")
+        self.other_item = item.Item(400, 600, "hammer", "assets/items/hammer.png")
 
         self.wall_points = [
             [0, 0, 15, 1], [0, 1, 1, 21], [15, 1, 1, 8], [15, 11, 1, 3], [15, 16, 1, 6], [1, 21, 14, 1], [16, 7, 11, 1], [16, 12, 11, 1], [16, 17, 16, 1], [20, 13, 1, 4],
