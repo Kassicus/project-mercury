@@ -64,6 +64,7 @@ class HotBar(pygame.sprite.Sprite):
         self.display_surface = pygame.display.get_surface()
 
         self.nodes = pygame.sprite.Group()
+        self.active_node = None
         
         self.image = pygame.Surface([int((48 + (48 + 5) * 4)), 48]) #( width + ( width + padding ) * count {-1} ) width = 48, padding = 5, count = 5 {reduce by 1}
         self.image.fill(lib.color.WHITE)
@@ -96,10 +97,16 @@ class HotBar(pygame.sprite.Sprite):
             return True
         else:
             return False
+        
+    def get_active_node(self) -> Node:
+        for n in self.nodes:
+            if n.selected:
+                return n
 
     def update(self):
         self.render()
         self.nodes.update()
+        self.active_node = self.get_active_node()
 
     def render(self):
         self.nodes.draw(self.display_surface)

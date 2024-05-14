@@ -55,6 +55,10 @@ class DebugInterface:
         self.display_surface.blit(self.t_fps, (self.o_fps, 10))
         self.display_surface.blit(self.t_mouse, (self.o_mouse, 30))
 
+        if lib.world_reference.hotbar.active_node is not None:
+            if lib.world_reference.hotbar.active_node.item is not None:
+                lib.world_reference.hotbar.active_node.item.show_radius()
+
     def update(self, clock: pygame.time.Clock):
         self.t_fps, self.o_fps = self.get_fps(clock)
         self.t_mouse, self.o_mouse = self.get_mouse()
