@@ -36,6 +36,7 @@ class Node(pygame.sprite.Sprite):
 
     def interact(self):
         mouse_pos = pygame.mouse.get_pos()
+        keys = pygame.key.get_pressed()
 
         if self.pos.x < mouse_pos[0] < self.pos.x + self.rect.width:
             if self.pos.y < mouse_pos[1] < self.pos.y + self.rect.height:
@@ -53,6 +54,17 @@ class Node(pygame.sprite.Sprite):
                 self.selected = True
             else:
                 self.selected = False
+
+        if keys[pygame.K_v]:
+            self.drop_item()
+
+    def drop_item(self):
+        if self.item is not None:
+            self.item.pos = lib.world_reference.player.pos - lib.global_offset
+            lib.world_reference.ground_items.add(self.item)
+            lib.world_reference.world_camera.add(self.item)
+            self.item = None
+            
             
 
 class HotBar(pygame.sprite.Sprite):
